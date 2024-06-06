@@ -16,6 +16,19 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+
+    public function findOrFailBySlug(string $slug): Post 
+    {
+        
+     return $this->createQueryBuilder('p') //permet la construction de la requette 
+    ->where('p.slug = :slug')
+    ->setparameter('slug',$slug) 
+    ->setMaxResults(1)//avoir une seul resultat
+    ->getQuery()
+    ->getSingleResult(); //recuperer le premier resultat 
+
+    }
+
     //    /**
     //     * @return Post[] Returns an array of Post objects
     //     */
