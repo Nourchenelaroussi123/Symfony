@@ -29,7 +29,7 @@ class Post
     #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
 
-    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\ManyToOne(inversedBy: 'posts', fetch: 'EAGER')]//forcer la recuperation des donnees 
     private ?Category $category = null;
 
     public function getId(): ?int

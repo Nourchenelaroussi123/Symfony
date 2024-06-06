@@ -26,7 +26,6 @@ class PostRepository extends ServiceEntityRepository
     ->setMaxResults(1)//avoir une seul resultat
     ->getQuery()
     ->getSingleResult(); //recuperer le premier resultat 
-
     }
 
     //    /**
