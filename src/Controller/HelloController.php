@@ -13,11 +13,12 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
 use App\Repository\PostRepository;
-
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class HelloController extends AbstractController
 {
     #[Route('/hello/{name}', name: 'app_hello')]
+    #[IsGranted('ROLE_USER')]
     public function index(Request $request,String $name,EntityManagerInterface $manager,PostRepository $repository ): Response
     {
         // $posts=new Post();
@@ -58,7 +59,7 @@ class HelloController extends AbstractController
 
         // $posts = $repository->findOrFailBySlug('mon-premier-article');//chercher par slug methode que j'ai defini dans postRepisotory //par la declaration d'un repository
         // dd($posts->getCategory()->getName(),$posts->getCategory());
-        $posts = $repository->findAll();//chercher par slug methode que j'ai defini dans postRepisotory //par la declaration d'un repository
+        $posts = $repository->findAllWithCategory();//chercher par slug methode que j'ai defini dans postRepisotory //par la declaration d'un repository
         
 
         

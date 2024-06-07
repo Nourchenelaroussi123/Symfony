@@ -27,6 +27,16 @@ class PostRepository extends ServiceEntityRepository
     ->getQuery()
     ->getSingleResult(); //recuperer le premier resultat 
     }
+    public function findAllWithCategory(){
+        return $this->createQueryBuilder('p') //permet la construction de la requette 
+        ->join('p.category','c') //liaison sur la table category
+        ->select('p','c') //selectionner tout ce qui est dans p et c
+        ->getQuery()
+        ->getResult();
+    
+
+
+    }
 
     //    /**
     //     * @return Post[] Returns an array of Post objects
